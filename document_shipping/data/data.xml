@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_main_documents_shipping" 
+        name="Valija" 
+        web_icon="document_shipping,static/description/icon.png"/>
+
+        <menuitem id="menu_main_documents_valija" 
+        name="Valija" 
+        parent="menu_main_documents_shipping" 
+        sequence="10"/>
+
+        <menuitem id="menu_main_documents_setting" 
+        name="Configuración" 
+        parent="menu_main_documents_shipping" 
+        sequence="20"/>
+
+        <menuitem id="menu_settings_bank" 
+        name="Bancos" 
+        parent="menu_main_documents_setting" 
+        action="base.action_res_bank_form"
+        sequence="40"/>
+
+        <record id="seq_document_shipping_out" model="ir.sequence">
+            <field name="name">Entrega</field>
+            <field name="code">document.shipping.out</field>
+            <field name="prefix">VAL/OUT/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="seq_document_shipping_in" model="ir.sequence">
+            <field name="name">Recepción</field>
+            <field name="code">document.shipping.in</field>
+            <field name="prefix">VAL/IN/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="action_document_shipping_report" model="ir.actions.report">
+            <field name="name">Print Document Shipping</field>
+            <field name="model">document.shipping</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">document_shipping.document_shipping_report</field>
+            <field name="report_file">document_shipping.document_shipping_report</field>
+            <field name="binding_model_id" ref="document_shipping.model_document_shipping"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
