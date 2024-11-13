@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="document_shipping_report" name="Comprobante Devolucion">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                        <div class="page" style="font-size: 11pt;">
+                            <h4 align="center">VALIJA <t t-esc="o.name"/></h4>
+                            <div class="row" style="border-bottom: 1px solid black;">
+                                <div class="col-xs-2">
+                                    <strong>Emitido por: </strong>
+                                    <span> <t t-esc="o.user_out_id.name"/></span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <strong>Fecha de Envío:</strong>
+                                    <span> <t t-esc="o.date_out"/></span>
+                                </div>
+			                </div>
+                            <div class="row" style="border-bottom: 1px solid black;">
+                                <div class="col-xs-2">
+                                    <strong>Recibido por:</strong>
+                                    <span><t t-esc="o.user_in_id.name"/></span>
+                                </div>
+                                <div class="col-xs-2">
+                                    <strong>Fecha de Recepción:</strong>
+                                    <span> <t t-esc="o.date_in"/></span>
+                                </div>
+                            </div>
+                            <div class="row" style="border-bottom: 1px solid black;">
+                                <div class="col-xs-2">
+                                    <strong>Enviado a:</strong>
+                                    <span><t t-esc="o.user_send_id.name"/></span>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <table class="table" text-align="center" style="width:100%;border-collapse:collapse;border:1px solid black">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">
+                                            <h3 class="text-center">Detalle</h3>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <strong>Cliente</strong>
+                                        </th>
+                                        <th class="text-center">
+                                            <strong>Documento</strong>
+                                        </th>
+                                        <th class="text-center">
+                                            <strong>No Doc.</strong>
+                                        </th>
+                                        <th class="text-center">
+                                            <strong>Valor</strong>
+                                        </th>
+                                        <th class="text-center">
+                                            <strong>Entidad</strong>
+                                        </th>
+                                        <th class="text-center">
+                                            <strong>Nota</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.documents_ids" t-as="line">
+                                        <tr>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.partner_id.name"/></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.document_type_id.name"/></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.reference"/></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.amount"/></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.bank_id.name"/></span>
+                                            </td>
+                                            <td class="text-center">
+                                                <span><t t-esc="line.note"/></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <br/><br/><br/><br/>
+                            <table style="width:100%;border-color:white">
+                                <tr style="text-align:center">
+                                    <td>ENTREGADO POR: </td>
+                                    <td>RECIBIDO POR: </td>
+                                </tr>
+                                <tr class="spaceUnder" style="text-align:center">
+                                    <td><br/>______________________________________________</td>
+                                    <td><br/>______________________________________________</td>
+                                </tr>
+                            </table>
+                            <!---<div class="row" style="text-align: center; font-size: 9px;">
+                                <div class="col-xs-4">
+                                    <hr> </hr>
+                                    <span><strong>ENTREGADO POR</strong></span>
+                                </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                <div class="col-xs-4">
+                                    <hr> </hr>
+                                    <span><strong>RECIBIDO POR</strong></span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report
+            id="document_shipping_report"
+            string="VALIJA"
+            model="document.shipping"
+            report_type="qweb-pdf"
+            name="document_shipping.document_shipping_report"
+            file="document_shipping.document_shipping_report"/>
+
+    </data>
+</odoo>

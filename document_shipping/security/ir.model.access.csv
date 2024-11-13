@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_document_shipping_line,access_document_shipping_line,model_document_shipping_line,base.group_user,1,1,1,1
+access_document_shipping_type,access_document_shipping_type,model_document_shipping_type,base.group_user,1,1,1,1
+access_document_shipping,access_document_shipping,model_document_shipping,base.group_user,1,1,1,0
